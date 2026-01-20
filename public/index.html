@@ -3,246 +3,332 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACQUA SISTEMAS - Terminal de Acesso</title>
+    <title>Portal Acqua Sistemas</title>
     <style>
-        /* --- VARIÁVEIS DE ESTILO NEON --- */
+        /* --- RAYCAST DESIGN SYSTEM --- */
         :root {
-            --bg-color: #050505;
-            --text-color: #39ff14; /* Verde Neon Terminal */
-            --neon-green-glow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 40px #39ff14;
-            --neon-gold: #ffbd00;
-            --neon-gold-glow: 0 0 10px #ffbd00, 0 0 20px #ffbd00;
-            --font-stack: 'Courier New', Courier, monospace; /* Fonte estilo terminal */
+            --bg-body: #0B0B0B;
+            --bg-card: #131313;
+            --bg-card-hover: #1A1A1A;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-highlight: rgba(255, 255, 255, 0.15);
+            --text-primary: #EDEDED;
+            --text-secondary: #888888;
+            --accent-glow: rgba(255, 255, 255, 0.03);
+            --modal-bg: rgba(22, 22, 22, 0.85);
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --transition-speed: 0.2s cubic-bezier(0.16, 1, 0.3, 1); /* Curva suave estilo Apple */
         }
 
-        /* --- RESET BÁSICO E FUNDO --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
+            background-color: var(--bg-body);
+            color: var(--text-primary);
             font-family: var(--font-stack);
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            /* Efeito sutil de linhas de varredura (scanlines) */
-            background-image: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            background-size: 100% 2px, 3px 100%;
-        }
-
-        /* --- CABEÇALHO --- */
-        header {
-            padding: 30px 20px;
-            text-align: center;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--text-color);
-            box-shadow: var(--neon-green-glow);
-        }
-
-        header h1 {
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-shadow: var(--neon-green-glow);
-        }
-
-        /* --- CONTAINER DOS CARDS --- */
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 25px;
-            width: 90%;
-            max-width: 1000px;
-            margin: 20px auto;
-            padding-bottom: 40px;
-        }
-
-        /* --- ESTILO DOS CARDS RETRÔ --- */
-        .card {
-            background: rgba(0, 20, 0, 0.3); /* Fundo semi-transparente */
-            padding: 25px;
-            border: 2px solid var(--text-color);
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3), inset 0 0 15px rgba(57, 255, 20, 0.1);
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            position: relative;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            padding: 40px 20px;
         }
 
-        /* Efeito ao passar o mouse: Brilho mais intenso */
+        /* --- HEADER --- */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .brand-subtitle {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .brand-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            background: linear-gradient(180deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- GRID CONTAINER --- */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 12px;
+            width: 100%;
+            max-width: 900px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out 0.1s forwards;
+        }
+
+        /* --- CARD STYLE --- */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
         .card:hover {
-            background: rgba(57, 255, 20, 0.1);
-            box-shadow: var(--neon-green-glow), inset 0 0 20px rgba(57, 255, 20, 0.3);
-            transform: scale(1.02);
+            background: var(--bg-card-hover);
+            border-color: var(--border-highlight);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+        }
+        
+        .card-icon svg {
+            width: 20px;
+            height: 20px;
+            opacity: 0.8;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
         }
 
         .card h3 {
-            margin-top: 15px;
-            font-size: 1rem;
-            font-weight: normal;
-            letter-spacing: 1px;
-            text-shadow: 0 0 5px var(--text-color);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 4px;
         }
 
-        .icon {
-            font-size: 2rem;
-            text-shadow: 0 0 10px var(--text-color);
+        .card p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
         }
 
-        /* Estilo especial para o card Master */
-        .card-master {
-            border-color: var(--neon-gold);
-            color: var(--neon-gold);
-            box-shadow: 0 0 15px rgba(255, 189, 0, 0.3), inset 0 0 15px rgba(255, 189, 0, 0.1);
-        }
-        .card-master .icon, .card-master h3 {
-            color: var(--neon-gold);
-            text-shadow: var(--neon-gold-glow);
-        }
-        .card-master:hover {
-            background: rgba(255, 189, 0, 0.1);
-            box-shadow: var(--neon-gold-glow);
+        /* Atalho visual para Enter/Seta no hover */
+        .card::after {
+            content: "↵";
+            position: absolute;
+            right: 20px;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all var(--transition-speed);
+            color: var(--text-secondary);
+            font-size: 1.2rem;
         }
 
-        /* --- MODAL (TERMINAL POPUP) --- */
+        .card:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Estilo sutil para o card Master */
+        .card-master .card-icon {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        /* --- MODAL / COMMAND BAR --- */
         .modal-overlay {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px); /* Efeito vidro */
             justify-content: center;
-            align-items: center;
+            align-items: center; /* Centraliza verticalmente */
             z-index: 1000;
+            padding-top: 0; /* Remove padding top para centralizar perfeito */
         }
 
-        .modal {
-            background: #000;
-            padding: 30px;
-            border: 3px solid var(--text-color);
-            box-shadow: var(--neon-green-glow), inset 0 0 20px rgba(57, 255, 20, 0.2);
-            width: 350px;
-            text-align: center;
-            position: relative;
+        .command-bar {
+            background: #161616;
+            width: 500px;
+            max-width: 90%;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+            overflow: hidden;
+            animation: slideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
         }
 
-        .modal h2 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            text-shadow: 0 0 8px var(--text-color);
-            border-bottom: 1px dashed var(--text-color);
-            padding-bottom: 10px;
+        .command-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .modal input {
-            width: 100%;
-            padding: 10px;
-            margin: 20px 0;
-            background: #111;
+        .command-header svg {
+            color: var(--text-secondary);
+        }
+
+        .command-input {
+            background: transparent;
             border: none;
-            border-bottom: 3px solid var(--text-color);
-            color: var(--text-color);
-            font-family: var(--font-stack);
-            font-size: 1.8rem;
-            text-align: center;
-            letter-spacing: 8px;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            width: 100%;
             outline: none;
+            font-family: var(--font-stack);
         }
         
-        .modal input::placeholder { color: rgba(57, 255, 20, 0.4); }
-
-        .btn-entrar {
-            background: transparent;
-            color: var(--text-color);
-            border: 2px solid var(--text-color);
-            padding: 15px 30px;
-            width: 100%;
-            font-family: var(--font-stack);
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+        .command-input::placeholder {
+            color: #555;
         }
 
-        .btn-entrar:hover {
-            background: var(--text-color);
-            color: var(--bg-color);
-            box-shadow: var(--neon-green-glow);
+        .command-footer {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.02);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
         }
 
-        .btn-fechar {
-            position: absolute;
-            top: 10px; right: 15px;
-            background: none; border: none;
-            font-family: var(--font-stack);
-            font-size: 1.5rem; cursor: pointer;
-            color: var(--text-color);
-            text-shadow: 0 0 5px var(--text-color);
+        .kbd {
+            background: rgba(255,255,255,0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: inherit;
+            margin-left: 6px;
         }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+
     </style>
 </head>
 <body>
 
     <header>
-        <h1>ACQUA SISTEMAS <br><span style="font-size: 0.8em; opacity: 0.8;">(GRUPO ALCINA MARIA)</span></h1>
+        <div class="brand-subtitle">Grupo Alcina Maria</div>
+        <div class="brand-title">Portal Acqua Sistemas</div>
     </header>
 
     <div class="container">
         <div class="card card-master" onclick="abrirModal('GERENCIA')">
-            <span class="icon">◉</span>
-            <h3>ACESSO MASTER (PIN)</h3>
+            <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </div>
+            <div class="card-content">
+                <h3>Acesso Master</h3>
+                <p>Gerenciamento Global</p>
+            </div>
         </div>
 
         <div class="card" onclick="abrirModal('RH')">
-            <span class="icon">█▌</span>
-            <h3>RH</h3>
+            <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <div class="card-content">
+                <h3>Recursos Humanos</h3>
+                <p>Departamento Pessoal</p>
+            </div>
         </div>
+
         <div class="card" onclick="abrirModal('GENTE_CULTURA')">
-            <span class="icon">░▒▓</span>
-            <h3>GENTE E CULTURA</h3>
+            <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <div class="card-content">
+                <h3>Gente e Cultura</h3>
+                <p>Desenvolvimento</p>
+            </div>
         </div>
+
         <div class="card" onclick="abrirModal('FINANCEIRO')">
-            <span class="icon">$</span>
-            <h3>FINANCEIRO</h3>
+            <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+            <div class="card-content">
+                <h3>Financeiro</h3>
+                <p>Contas e Fluxo</p>
+            </div>
         </div>
+
         <div class="card" onclick="abrirModal('ADMINISTRATIVO')">
-            <span class="icon">A://</span>
-            <h3>ADMINISTRATIVO</h3>
+            <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            </div>
+            <div class="card-content">
+                <h3>Administrativo</h3>
+                <p>Gestão Interna</p>
+            </div>
         </div>
+
         <div class="card" onclick="abrirModal('LOGISTICO')">
-            <span class="icon">▀▄▀▄</span>
-            <h3>LOGÍSTICO</h3>
+            <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            </div>
+            <div class="card-content">
+                <h3>Logístico</h3>
+                <p>Estoque e Frota</p>
+            </div>
         </div>
+
         <div class="card" onclick="abrirModal('COMERCIAL')">
-            <span class="icon"><-></span>
-            <h3>COMERCIAL</h3>
+            <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.2 7.8l-7.7 7.7-4-4-5.7 5.7"></path><path d="M15 7h6v6"></path></svg>
+            </div>
+            <div class="card-content">
+                <h3>Comercial</h3>
+                <p>Vendas e Metas</p>
+            </div>
         </div>
+
         <div class="card" onclick="abrirModal('MARKETING')">
-            <span class="icon">((•))</span>
-            <h3>MARKETING</h3>
+            <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+            </div>
+            <div class="card-content">
+                <h3>Marketing</h3>
+                <p>Mídia e Branding</p>
+            </div>
         </div>
     </div>
 
     <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-            <button class="btn-fechar" onclick="fecharModal()">X</button>
-            <h2 id="tituloModal">> AUTENTICAÇÃO</h2>
-            <p style="margin-top: 10px;">&gt; INSIRA PIN DO SETOR OU MASTER_KEY_</p>
-            
-            <input type="password" id="inputSenha" placeholder="****" maxlength="4" onkeypress="handleEnter(event)">
-            
-            <button class="btn-entrar" onclick="verificarSenha()">[ EXECUTAR ACESSO ]</button>
+        <div class="command-bar">
+            <div class="command-header">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <input type="password" id="inputSenha" class="command-input" placeholder="Digite o PIN de acesso..." maxlength="4" onkeypress="handleEnter(event)">
+            </div>
+            <div class="command-footer">
+                <span id="nomeSetorAlvo">Setor Selecionado</span>
+                <span>Acessar <span class="kbd">↵ Enter</span></span>
+            </div>
         </div>
     </div>
 
     <script>
-        // --- DADOS ---
+        // --- LÓGICA DE SEGURANÇA MANTIDA ---
         const SENHAS = {
             'RH': '3030',
             'GENTE_CULTURA': '3232',
@@ -252,50 +338,55 @@
             'COMERCIAL': '1010',
             'MARKETING': '1515'
         };
+
         const PIN_GERENCIA = '7776';
         let setorAtual = '';
 
-        // --- FUNÇÕES VISUAIS ---
         function abrirModal(setor) {
             setorAtual = setor;
-            const nomeSetor = setor === 'GERENCIA' ? 'MASTER_KEY' : setor.replace('_', ' & ');
-            document.getElementById('tituloModal').innerText = `> PROTOCOLO DE ACESSO: ${nomeSetor}`;
+            const nomeExibicao = setor === 'GERENCIA' ? 'Acesso Master' : setor.replace('_', ' e ');
+            
+            document.getElementById('nomeSetorAlvo').innerText = nomeExibicao;
             document.getElementById('inputSenha').value = '';
             document.getElementById('modalOverlay').style.display = 'flex';
             document.getElementById('inputSenha').focus();
         }
 
-        function fecharModal() {
-            document.getElementById('modalOverlay').style.display = 'none';
-            setorAtual = '';
-        }
+        // Fecha se clicar fora da barra de comando
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+                setorAtual = '';
+            }
+        });
 
-        // --- FUNÇÕES DE LÓGICA ---
         function handleEnter(event) {
             if (event.key === 'Enter') verificarSenha();
         }
 
         function verificarSenha() {
             const senha = document.getElementById('inputSenha').value;
+            const modal = document.getElementById('modalOverlay');
 
-            // 1. Validação Master (7776)
+            // 1. PIN Master (7776)
             if (senha === PIN_GERENCIA) {
-                alert(`> ACESSO MASTER CONCEDIDO.\n> REDIRECIONANDO PARA SETOR: ${setorAtual}...`);
-                // window.location.href = 'dashboard_master.html';
-                fecharModal();
+                // Efeito visual de sucesso antes de redirecionar (opcional)
+                alert(`Acesso Master Permitido: ${setorAtual}`);
+                modal.style.display = 'none';
                 return;
             }
 
-            // 2. Validação do Setor
+            // 2. PIN do Setor
             if (setorAtual !== 'GERENCIA' && senha === SENHAS[setorAtual]) {
-                alert(`> PIN CORRETO.\n> BEM-VINDO AO MÓDULO: ${setorAtual}`);
-                // window.location.href = `modulo_${setorAtual.toLowerCase()}.html`;
-                fecharModal();
+                alert(`Bem-vindo ao ${setorAtual}`);
+                modal.style.display = 'none';
             } else {
-                // 3. Erro
-                alert('> ERRO: PIN INVÁLIDO OU ACESSO NEGADO.');
-                document.getElementById('inputSenha').value = '';
-                document.getElementById('inputSenha').focus();
+                // Feedback visual de erro (chacoalhar input)
+                const input = document.getElementById('inputSenha');
+                input.style.color = '#ff4444';
+                setTimeout(() => input.style.color = '#ededed', 300);
+                input.value = '';
+                input.placeholder = 'Senha Incorreta';
             }
         }
     </script>
