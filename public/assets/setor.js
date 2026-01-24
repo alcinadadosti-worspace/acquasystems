@@ -5,6 +5,66 @@ const grid = document.getElementById('apps-grid');
 
 if (!sectorKey) window.location.href = '/';
 
+// Dados das aplicações embutidos (para deploy estático)
+const APPS_DATA = [
+    {
+        "id": 1,
+        "nome": "Ponto Eletrônico",
+        "setor": "RH",
+        "url": "https://google.com",
+        "descricao": "Registro de ponto diário"
+    },
+    {
+        "id": 2,
+        "nome": "Holerites",
+        "setor": "RH",
+        "url": "https://google.com",
+        "descricao": "Consulta de pagamentos"
+    },
+    {
+        "id": 3,
+        "nome": "Fluxo de Caixa",
+        "setor": "FINANCEIRO",
+        "url": "https://google.com",
+        "descricao": "Controle financeiro"
+    },
+    {
+        "id": 4,
+        "nome": "Ativos e Multimarcas",
+        "setor": "COMERCIAL",
+        "url": "https://multimarks-active-circles.onrender.com",
+        "descricao": "Clientes ativos e multimarcas do ciclo"
+    },
+    {
+        "id": 5,
+        "nome": "Ranking Supervisoras",
+        "setor": "COMERCIAL",
+        "url": "https://supervisiondashboard.onrender.com",
+        "descricao": "Visão de clientes, metas e objetivos"
+    },
+    {
+        "id": 6,
+        "nome": "Supervisão de Estoque",
+        "setor": "LOGISTICO",
+        "url": "https://organizationstock.onrender.com",
+        "descricao": "Itens negativos, zerados e duplicados"
+    },
+    {
+        "id": 7,
+        "nome": "Entrada de Mercadorias",
+        "setor": "LOGISTICO",
+        "url": "https://supervisionstock.onrender.com",
+        "descricao": "Notas fiscais e itens recebidos"
+    },
+    {
+        "id": 8,
+        "nome": "Tickets TI",
+        "setor": "ADMINISTRATIVO",
+        "url": "https://google.com",
+        "descricao": "Abertura de chamados"
+    }
+];
+
 // Nomes amigáveis para exibição
 const nomesSetores = {
     'MASTER': 'Acesso Master',
@@ -34,37 +94,35 @@ const iconeDefault = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none
 
 title.textContent = nomesSetores[sectorKey] || sectorKey;
 
-fetch('/api/apps')
-    .then(r => r.json())
-    .then(apps => {
-        // MASTER vê todas as aplicações, outros setores veem apenas as suas
-        const filtered = sectorKey === 'MASTER'
-            ? apps
-            : apps.filter(app => app.setor === sectorKey);
+// Carrega aplicações usando dados embutidos (sem necessidade de API)
+const apps = APPS_DATA;
 
-        grid.innerHTML = '';
-        if (filtered.length === 0) {
-            grid.innerHTML = '<div class="loading">Nenhuma aplicação neste setor.</div>';
-            return;
-        }
-        filtered.forEach(app => {
-            const card = document.createElement('a');
-            card.className = 'card';
-            card.href = app.url;
-            card.target = "_blank";
-            card.rel = "noopener noreferrer";
+// MASTER vê todas as aplicações, outros setores veem apenas as suas
+const filtered = sectorKey === 'MASTER'
+    ? apps
+    : apps.filter(app => app.setor === sectorKey);
 
-            // Usa o ícone do setor da aplicação ou o ícone padrão
-            const icone = iconesPorSetor[app.setor] || iconeDefault;
+grid.innerHTML = '';
+if (filtered.length === 0) {
+    grid.innerHTML = '<div class="loading">Nenhuma aplicação neste setor.</div>';
+} else {
+    filtered.forEach(app => {
+        const card = document.createElement('a');
+        card.className = 'card';
+        card.href = app.url;
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
 
-            card.innerHTML = `
-                <div class="card-icon">${icone}</div>
-                <div class="card-content">
-                    <h2>${app.nome}</h2>
-                    <span>${app.descricao}</span>
-                </div>
-            `;
-            grid.appendChild(card);
-        });
-    })
-    .catch(() => grid.innerHTML = '<div class="loading">Erro ao carregar.</div>');
+        // Usa o ícone do setor da aplicação ou o ícone padrão
+        const icone = iconesPorSetor[app.setor] || iconeDefault;
+
+        card.innerHTML = `
+            <div class="card-icon">${icone}</div>
+            <div class="card-content">
+                <h2>${app.nome}</h2>
+                <span>${app.descricao}</span>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+}
