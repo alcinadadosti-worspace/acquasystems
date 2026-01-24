@@ -60,7 +60,7 @@ const APPS_DATA = [
         "id": 8,
         "nome": "Tickets TI",
         "setor": "ADMINISTRATIVO",
-        "url": "https://google.com",
+        "url": "https://slack.com/app_redirect?channel=U07Q9HE3KGA",
         "descricao": "Abertura de chamados"
     }
 ];
