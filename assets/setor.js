@@ -32,7 +32,7 @@ const APPS_DATA = [
         "id": 4,
         "nome": "Ativos e Multimarcas",
         "setor": "COMERCIAL",
-        "url": "https://multimarks-active-circles.onrender.com",
+        "url": "https://activesmultimarks.onrender.com",
         "descricao": "Clientes ativos e multimarcas do ciclo"
     },
     {
