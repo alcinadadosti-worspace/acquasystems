@@ -3,9 +3,5 @@ services:
     name: acquasystems
     runtime: static
     buildCommand: ""
-    staticPublishPath: ./public
+    staticPublishPath: .
     plan: free
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
