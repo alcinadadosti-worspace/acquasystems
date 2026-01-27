@@ -43,6 +43,13 @@ const APPS_DATA = [
         "descricao": "Visão de clientes, metas e objetivos"
     },
     {
+        "id": 9,
+        "nome": "Promoção",
+        "setor": "COMERCIAL",
+        "url": "https://crossingsheets.onrender.com",
+        "descricao": "Promoção disponível"
+    },
+    {
         "id": 6,
         "nome": "Supervisão de Estoque",
         "setor": "LOGISTICO",
