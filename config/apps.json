@@ -35,6 +35,13 @@
     "descricao": "Visão de clientes, metas e objetivos"
   },
   {
+    "id": 9,
+    "nome": "Entrada de Mercadorias",
+    "setor": "COMERCIAL",
+    "url": "https://notesintegration.onrender.com",
+    "descricao": "Notas fiscais e itens recebidos"
+  },
+  {
     "id": 6,
     "nome": "Supervisão de Estoque",
     "setor": "LOGISTICO",
@@ -45,7 +52,7 @@
     "id": 7,
     "nome": "Entrada de Mercadorias",
     "setor": "LOGISTICO",
-    "url": "https://supervisionstock.onrender.com",
+    "url": "https://notesintegration.onrender.com",
     "descricao": "Notas fiscais e itens recebidos"
   },
   {
