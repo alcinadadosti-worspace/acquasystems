@@ -50,6 +50,13 @@ const APPS_DATA = [
         "descricao": "Promoção disponível"
     },
     {
+        "id": 10,
+        "nome": "Entrada de Mercadorias",
+        "setor": "COMERCIAL",
+        "url": "https://notesintegration.onrender.com",
+        "descricao": "Notas fiscais e itens recebidos"
+    },
+    {
         "id": 6,
         "nome": "Supervisão de Estoque",
         "setor": "LOGISTICO",
@@ -60,7 +67,7 @@ const APPS_DATA = [
         "id": 7,
         "nome": "Entrada de Mercadorias",
         "setor": "LOGISTICO",
-        "url": "https://supervisionstock.onrender.com",
+        "url": "https://notesintegration.onrender.com",
         "descricao": "Notas fiscais e itens recebidos"
     },
     {
