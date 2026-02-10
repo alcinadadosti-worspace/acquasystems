@@ -8,18 +8,11 @@ if (!sectorKey) window.location.href = '/';
 // Dados das aplicações embutidos (para deploy estático)
 const APPS_DATA = [
     {
-        "id": 1,
-        "nome": "Ponto Eletrônico",
+        "id": 11,
+        "nome": "Holerites Nomeados",
         "setor": "RH",
-        "url": "https://google.com",
-        "descricao": "Registro de ponto diário"
-    },
-    {
-        "id": 2,
-        "nome": "Holerites",
-        "setor": "RH",
-        "url": "https://google.com",
-        "descricao": "Consulta de pagamentos"
+        "url": "https://pdfseed.onrender.com/",
+        "descricao": "Holerites com identificação nominal"
     },
     {
         "id": 3,
