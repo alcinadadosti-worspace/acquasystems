@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "nome": "Ponto Eletrônico",
+    "setor": "RH",
+    "url": "https://google.com",
+    "descricao": "Registro de ponto diário"
+  },
+  {
+    "id": 2,
+    "nome": "Holerites",
+    "setor": "RH",
+    "url": "https://google.com",
+    "descricao": "Consulta de pagamentos"
+  },
+  {
+    "id": 3,
+    "nome": "Fluxo de Caixa",
+    "setor": "FINANCEIRO",
+    "url": "https://google.com",
+    "descricao": "Controle financeiro"
+  },
+  {
+    "id": 4,
+    "nome": "Ativos e Multimarcas",
+    "setor": "COMERCIAL",
+    "url": "https://multimarks-active-circles.onrender.com",
+    "descricao": "Clientes ativos e multimarcas do ciclo"
+  },
+  {
+    "id": 5,
+    "nome": "Ranking Supervisoras",
+    "setor": "COMERCIAL",
+    "url": "https://supervisiondashboard.onrender.com",
+    "descricao": "Visão de clientes, metas e objetivos"
+  },
+  {
+    "id": 9,
+    "nome": "Entrada de Mercadorias",
+    "setor": "COMERCIAL",
+    "url": "https://notesintegration.onrender.com",
+    "descricao": "Notas fiscais e itens recebidos"
+  },
+  {
+    "id": 6,
+    "nome": "Supervisão de Estoque",
+    "setor": "LOGISTICO",
+    "url": "https://organizationstock.onrender.com",
+    "descricao": "Itens negativos, zerados e duplicados"
+  },
+  {
+    "id": 7,
+    "nome": "Entrada de Mercadorias",
+    "setor": "LOGISTICO",
+    "url": "https://notesintegration.onrender.com",
+    "descricao": "Notas fiscais e itens recebidos"
+  },
+  {
+    "id": 8,
+    "nome": "Tickets TI",
+    "setor": "ADMINISTRATIVO",
+    "url": "https://google.com",
+    "descricao": "Abertura de chamados"
+  }
+]

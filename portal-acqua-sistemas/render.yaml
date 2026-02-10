@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: acquasystems
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: .
+    plan: free

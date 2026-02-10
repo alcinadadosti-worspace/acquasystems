@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Acqua Sistemas</title>
+    <style>
+        /* --- RAYCAST DESIGN SYSTEM --- */
+        :root {
+            --bg-body: #0B0B0B;
+            --bg-card: #131313;
+            --bg-card-hover: #1A1A1A;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-highlight: rgba(255, 255, 255, 0.15);
+            --text-primary: #EDEDED;
+            --text-secondary: #888888;
+            --accent-glow: rgba(255, 255, 255, 0.03);
+            --modal-bg: rgba(22, 22, 22, 0.85);
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --transition-speed: 0.2s cubic-bezier(0.16, 1, 0.3, 1); /* Curva suave estilo Apple */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            font-family: var(--font-stack);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            padding: 40px 20px;
+        }
+
+        /* --- HEADER --- */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .brand-subtitle {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .brand-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            background: linear-gradient(180deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- GRID CONTAINER --- */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 12px;
+            width: 100%;
+            max-width: 900px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out 0.1s forwards;
+        }
+
+        /* --- CARD STYLE --- */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-highlight);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+        }
+        
+        .card-icon svg {
+            width: 20px;
+            height: 20px;
+            opacity: 0.8;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card h3 {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .card p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Atalho visual para Enter/Seta no hover */
+        .card::after {
+            content: "↵";
+            position: absolute;
+            right: 20px;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all var(--transition-speed);
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        .card:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Estilo sutil para o card Master */
+        .card-master .card-icon {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        /* --- MODAL / COMMAND BAR --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px); /* Efeito vidro */
+            justify-content: center;
+            align-items: center; /* Centraliza verticalmente */
+            z-index: 1000;
+            padding-top: 0; /* Remove padding top para centralizar perfeito */
+        }
+
+        .command-bar {
+            background: #161616;
+            width: 500px;
+            max-width: 90%;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+            overflow: hidden;
+            animation: slideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .command-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .command-header svg {
+            color: var(--text-secondary);
+        }
+
+        .command-input {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            width: 100%;
+            outline: none;
+            font-family: var(--font-stack);
+        }
+        
+        .command-input::placeholder {
+            color: #555;
+        }
+
+        .command-footer {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.02);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .kbd {
+            background: rgba(255,255,255,0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: inherit;
+            margin-left: 6px;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-subtitle">Grupo Alcina Maria</div>
+        <div class="brand-title">Portal Acqua Sistemas</div>
+    </header>
+
+    <div class="container">
+        <div class="card card-master" onclick="abrirModal('GERENCIA')">
+            <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </div>
+            <div class="card-content">
+                <h3>Acesso Master</h3>
+                <p>Gerenciamento Global</p>
+            </div>
+        </div>
+
+        <div class="card" onclick="abrirModal('RH')">
+            <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <div class="card-content">
+                <h3>Recursos Humanos</h3>
+                <p>Departamento Pessoal</p>
+            </div>
+        </div>
+
+        <div class="card" onclick="abrirModal('GENTE_CULTURA')">
+            <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <div class="card-content">
+                <h3>Gente e Cultura</h3>
+                <p>Desenvolvimento</p>
+            </div>
+        </div>
+
+        <div class="card" onclick="abrirModal('FINANCEIRO')">
+            <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+            <div class="card-content">
+                <h3>Financeiro</h3>
+                <p>Contas e Fluxo</p>
+            </div>
+        </div>
+
+        <div class="card" onclick="abrirModal('ADMINISTRATIVO')">
+            <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            </div>
+            <div class="card-content">
+                <h3>Administrativo</h3>
+                <p>Gestão Interna</p>
+            </div>
+        </div>
+
+        <div class="card" onclick="abrirModal('LOGISTICO')">
+            <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            </div>
+            <div class="card-content">
+                <h3>Logístico</h3>
+                <p>Estoque e Frota</p>
+            </div>
+        </div>
+
+        <div class="card" onclick="abrirModal('COMERCIAL')">
+            <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.2 7.8l-7.7 7.7-4-4-5.7 5.7"></path><path d="M15 7h6v6"></path></svg>
+            </div>
+            <div class="card-content">
+                <h3>Comercial</h3>
+                <p>Vendas e Metas</p>
+            </div>
+        </div>
+
+        <div class="card" onclick="abrirModal('MARKETING')">
+            <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+            </div>
+            <div class="card-content">
+                <h3>Marketing</h3>
+                <p>Mídia e Branding</p>
+            </div>
+        </div>
+
+        <a class="card" href="https://cpalcinamaria.slack.com/team/U07Q9HE3KGA" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+            <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            </div>
+            <div class="card-content">
+                <h3>Tickets TI</h3>
+                <p>Abertura de chamados</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="command-bar">
+            <div class="command-header">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <input type="password" id="inputSenha" class="command-input" placeholder="Digite o PIN de acesso..." maxlength="4" onkeypress="handleEnter(event)">
+            </div>
+            <div class="command-footer">
+                <span id="nomeSetorAlvo">Setor Selecionado</span>
+                <span>Acessar <span class="kbd">↵ Enter</span></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- LÓGICA DE SEGURANÇA MANTIDA ---
+        const SENHAS = {
+            'RH': '3030',
+            'GENTE_CULTURA': '3232',
+            'FINANCEIRO': '1212',
+            'ADMINISTRATIVO': '2020',
+            'LOGISTICO': '8080',
+            'COMERCIAL': '1010',
+            'MARKETING': '1515'
+        };
+
+        const PIN_GERENCIA = '7776';
+        let setorAtual = '';
+
+        function abrirModal(setor) {
+            setorAtual = setor;
+            const nomeExibicao = setor === 'GERENCIA' ? 'Acesso Master' : setor.replace('_', ' e ');
+            
+            document.getElementById('nomeSetorAlvo').innerText = nomeExibicao;
+            document.getElementById('inputSenha').value = '';
+            document.getElementById('modalOverlay').style.display = 'flex';
+            document.getElementById('inputSenha').focus();
+        }
+
+        // Fecha se clicar fora da barra de comando
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+                setorAtual = '';
+            }
+        });
+
+        function handleEnter(event) {
+            if (event.key === 'Enter') verificarSenha();
+        }
+
+        function verificarSenha() {
+            const senha = document.getElementById('inputSenha').value;
+            const modal = document.getElementById('modalOverlay');
+
+            // 1. PIN Master (7776) - acesso a qualquer setor
+            if (senha === PIN_GERENCIA) {
+                modal.style.display = 'none';
+                // Se for GERENCIA, vai para uma página especial ou lista todos os setores
+                if (setorAtual === 'GERENCIA') {
+                    // Redireciona para setor master com acesso total
+                    window.location.href = `setor.html?key=MASTER`;
+                } else {
+                    // Acesso master a um setor específico
+                    window.location.href = `setor.html?key=${encodeURIComponent(setorAtual)}`;
+                }
+                return;
+            }
+
+            // 2. PIN do Setor específico
+            if (setorAtual !== 'GERENCIA' && senha === SENHAS[setorAtual]) {
+                modal.style.display = 'none';
+                window.location.href = `setor.html?key=${encodeURIComponent(setorAtual)}`;
+            } else {
+                // Feedback visual de erro (chacoalhar input)
+                const input = document.getElementById('inputSenha');
+                input.style.color = '#ff4444';
+                setTimeout(() => input.style.color = '#ededed', 300);
+                input.value = '';
+                input.placeholder = 'Senha Incorreta';
+            }
+        }
+    </script>
+</body>
+</html>
