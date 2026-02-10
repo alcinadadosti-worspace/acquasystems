@@ -50,6 +50,13 @@ const APPS_DATA = [
         "descricao": "Notas fiscais e itens recebidos"
     },
     {
+        "id": 12,
+        "nome": "Validade de Provadores",
+        "setor": "COMERCIAL",
+        "url": "https://slack-validade-bot.onrender.com",
+        "descricao": "Controle de validade de provadores"
+    },
+    {
         "id": 6,
         "nome": "Supervisão de Estoque",
         "setor": "LOGISTICO",
