@@ -11,7 +11,7 @@ const APPS_DATA = [
         "id": 11,
         "nome": "Holerites Nomeados",
         "setor": "RH",
-        "url": "https://pdfseed.onrender.com/",
+        "url": "https://pdfseedcomplex.onrender.com",
         "descricao": "Holerites com identificação nominal"
     },
     {
@@ -25,7 +25,7 @@ const APPS_DATA = [
         "id": 4,
         "nome": "Ativos e Multimarcas",
         "setor": "COMERCIAL",
-        "url": "https://activesmultimarks.onrender.com",
+        "url": "https://ativosemultimarcas.onrender.com",
         "descricao": "Clientes ativos e multimarcas do ciclo"
     },
     {
