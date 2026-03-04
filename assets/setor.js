@@ -15,6 +15,13 @@ const APPS_DATA = [
         "descricao": "Holerites com identificação nominal"
     },
     {
+        "id": 13,
+        "nome": "Controle de Horas",
+        "setor": "RH",
+        "url": "https://databank-frontend.onrender.com",
+        "descricao": "Controle de horas"
+    },
+    {
         "id": 3,
         "nome": "Fluxo de Caixa",
         "setor": "FINANCEIRO",
