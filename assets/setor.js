@@ -78,6 +78,13 @@ const APPS_DATA = [
         "descricao": "Notas fiscais e itens recebidos"
     },
     {
+        "id": 14,
+        "nome": "Cobertura de Estoque",
+        "setor": "LOGISTICO",
+        "url": "https://bridescobert.onrender.com",
+        "descricao": "Cobertura de estoque"
+    },
+    {
         "id": 8,
         "nome": "Tickets TI",
         "setor": "ADMINISTRATIVO",
