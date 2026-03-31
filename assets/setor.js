@@ -15,13 +15,6 @@ const APPS_DATA = [
         "descricao": "Holerites com identificação nominal"
     },
     {
-        "id": 13,
-        "nome": "Controle de Horas",
-        "setor": "RH",
-        "url": "https://databank-frontend.onrender.com",
-        "descricao": "Controle de horas"
-    },
-    {
         "id": 3,
         "nome": "Fluxo de Caixa",
         "setor": "FINANCEIRO",
@@ -90,6 +83,62 @@ const APPS_DATA = [
         "setor": "ADMINISTRATIVO",
         "url": "https://cpalcinamaria.slack.com/team/U07Q9HE3KGA",
         "descricao": "Abertura de chamados"
+    },
+    {
+        "id": 15,
+        "nome": "DataBank",
+        "setor": "RH",
+        "url": "https://databank-frontend.onrender.com",
+        "descricao": "Organização e alerta de batidas de ponto"
+    },
+    {
+        "id": 22,
+        "nome": "Ouvidoria/Feedbacks",
+        "setor": "GENTE_CULTURA",
+        "url": "https://pulse360-9eyt.onrender.com",
+        "descricao": "Canal de feedbacks e denúncias"
+    },
+    {
+        "id": 16,
+        "nome": "DataBank",
+        "setor": "GENTE_CULTURA",
+        "url": "https://databank-frontend.onrender.com",
+        "descricao": "Organização e alerta de batidas de ponto"
+    },
+    {
+        "id": 17,
+        "nome": "DataBank",
+        "setor": "FINANCEIRO",
+        "url": "https://databank-frontend.onrender.com",
+        "descricao": "Organização e alerta de batidas de ponto"
+    },
+    {
+        "id": 18,
+        "nome": "DataBank",
+        "setor": "ADMINISTRATIVO",
+        "url": "https://databank-frontend.onrender.com",
+        "descricao": "Organização e alerta de batidas de ponto"
+    },
+    {
+        "id": 19,
+        "nome": "DataBank",
+        "setor": "LOGISTICO",
+        "url": "https://databank-frontend.onrender.com",
+        "descricao": "Organização e alerta de batidas de ponto"
+    },
+    {
+        "id": 20,
+        "nome": "DataBank",
+        "setor": "COMERCIAL",
+        "url": "https://databank-frontend.onrender.com",
+        "descricao": "Organização e alerta de batidas de ponto"
+    },
+    {
+        "id": 21,
+        "nome": "DataBank",
+        "setor": "MARKETING",
+        "url": "https://databank-frontend.onrender.com",
+        "descricao": "Organização e alerta de batidas de ponto"
     }
 ];
 
