@@ -174,9 +174,9 @@ title.textContent = nomesSetores[sectorKey] || sectorKey;
 // Carrega aplicações usando dados embutidos (sem necessidade de API)
 const apps = APPS_DATA;
 
-// MASTER vê todas as aplicações, outros setores veem apenas as suas
+// MASTER vê todas as aplicações (sem duplicatas por URL), outros setores veem apenas as suas
 const filtered = sectorKey === 'MASTER'
-    ? apps
+    ? apps.filter((app, index, self) => index === self.findIndex(a => a.url === app.url))
     : apps.filter(app => app.setor === sectorKey);
 
 grid.innerHTML = '';
