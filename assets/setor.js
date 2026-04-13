@@ -139,6 +139,13 @@ const APPS_DATA = [
         "setor": "MARKETING",
         "url": "https://databank-frontend.onrender.com",
         "descricao": "Organização e alerta de batidas de ponto"
+    },
+    {
+        "id": 23,
+        "nome": "Sku's de planograma",
+        "setor": "COMERCIAL",
+        "url": "https://skuextractor.onrender.com/",
+        "descricao": "Extração e gestão de SKUs de planograma"
     }
 ];
 

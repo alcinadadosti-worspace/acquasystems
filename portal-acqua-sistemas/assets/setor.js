@@ -90,6 +90,13 @@ const APPS_DATA = [
         "setor": "ADMINISTRATIVO",
         "url": "https://cpalcinamaria.slack.com/team/U07Q9HE3KGA",
         "descricao": "Abertura de chamados"
+    },
+    {
+        "id": 23,
+        "nome": "Sku's de planograma",
+        "setor": "COMERCIAL",
+        "url": "https://skuextractor.onrender.com/",
+        "descricao": "Extração e gestão de SKUs de planograma"
     }
 ];
 
