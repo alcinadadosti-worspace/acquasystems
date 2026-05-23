@@ -153,6 +153,13 @@ const APPS_DATA = [
         "setor": "COMERCIAL",
         "url": "https://produtividadeer.onrender.com",
         "descricao": "Produtividade ER"
+    },
+    {
+        "id": 25,
+        "nome": "Sku's de Planograma",
+        "setor": "LOGISTICO",
+        "url": "https://skuextractor.onrender.com/",
+        "descricao": "Extração e gestão de SKUs de planograma"
     }
 ];
 
