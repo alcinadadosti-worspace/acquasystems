@@ -88,7 +88,7 @@ const APPS_DATA = [
         "id": 8,
         "nome": "Tickets TI",
         "setor": "ADMINISTRATIVO",
-        "url": "https://cpalcinamaria.slack.com/team/U07Q9HE3KGA",
+        "url": "https://cpalcinamaria.slack.com/team/U0A3P2QB5P0",
         "descricao": "Abertura de chamados"
     },
     {
