@@ -125,6 +125,13 @@ const APPS_DATA = [
         "setor": "COMERCIAL",
         "url": "https://captacao-3pp3.onrender.com",
         "descricao": "Captação de inícios"
+    },
+    {
+        "id": 28,
+        "nome": "Produtividade do Estoque",
+        "setor": "LOGISTICO",
+        "url": "https://logiprod.onrender.com",
+        "descricao": "Produtividade do estoque"
     }
 ];
 
