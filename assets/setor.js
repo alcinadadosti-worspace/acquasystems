@@ -160,6 +160,20 @@ const APPS_DATA = [
         "setor": "LOGISTICO",
         "url": "https://skuextractor.onrender.com/",
         "descricao": "Extração e gestão de SKUs de planograma"
+    },
+    {
+        "id": 26,
+        "nome": "Calendário",
+        "setor": "MARKETING",
+        "url": "https://markcalendar.onrender.com",
+        "descricao": "Calendário de marketing"
+    },
+    {
+        "id": 27,
+        "nome": "Captação de Inícios",
+        "setor": "COMERCIAL",
+        "url": "https://captacao-3pp3.onrender.com",
+        "descricao": "Captação de inícios"
     }
 ];
 
