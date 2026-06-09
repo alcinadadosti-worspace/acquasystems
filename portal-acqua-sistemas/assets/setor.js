@@ -132,6 +132,27 @@ const APPS_DATA = [
         "setor": "LOGISTICO",
         "url": "https://logiprod.onrender.com",
         "descricao": "Produtividade do estoque"
+    },
+    {
+        "id": 29,
+        "nome": "Sku's de Planograma",
+        "setor": "ADMINISTRATIVO",
+        "url": "https://skuextractor.onrender.com/",
+        "descricao": "Extração e gestão de SKUs de planograma"
+    },
+    {
+        "id": 30,
+        "nome": "Validade de Provadores",
+        "setor": "ADMINISTRATIVO",
+        "url": "https://slack-validade-bot.onrender.com",
+        "descricao": "Controle de validade de provadores"
+    },
+    {
+        "id": 31,
+        "nome": "DataBank",
+        "setor": "ADMINISTRATIVO",
+        "url": "https://databank-frontend.onrender.com",
+        "descricao": "Organização e alerta de batidas de ponto"
     }
 ];
 
@@ -141,7 +162,7 @@ const nomesSetores = {
     'RH': 'Recursos Humanos',
     'GENTE_CULTURA': 'Gente e Cultura',
     'FINANCEIRO': 'Financeiro',
-    'ADMINISTRATIVO': 'Administrativo',
+    'ADMINISTRATIVO': 'Canal Loja',
     'LOGISTICO': 'Logístico',
     'COMERCIAL': 'Comercial',
     'MARKETING': 'Marketing'
