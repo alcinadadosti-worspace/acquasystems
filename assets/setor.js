@@ -78,13 +78,6 @@ const APPS_DATA = [
         "descricao": "Cobertura de estoque"
     },
     {
-        "id": 8,
-        "nome": "Tickets TI",
-        "setor": "ADMINISTRATIVO",
-        "url": "https://cpalcinamaria.slack.com/team/U0A3P2QB5P0",
-        "descricao": "Abertura de chamados"
-    },
-    {
         "id": 15,
         "nome": "DataBank",
         "setor": "RH",
@@ -195,6 +188,20 @@ const APPS_DATA = [
         "setor": "ADMINISTRATIVO",
         "url": "https://slack-validade-bot.onrender.com",
         "descricao": "Controle de validade de provadores"
+    },
+    {
+        "id": 31,
+        "nome": "App Canal Loja",
+        "setor": "ADMINISTRATIVO",
+        "url": "https://appcanalloja.onrender.com/",
+        "descricao": "Aplicativo do Canal Loja"
+    },
+    {
+        "id": 32,
+        "nome": "Produtividade de Loja",
+        "setor": "ADMINISTRATIVO",
+        "url": "https://canalloja.onrender.com/",
+        "descricao": "Produtividade de loja"
     }
 ];
 

@@ -12,7 +12,8 @@
       "Bash(git stash:*)",
       "Bash(dir *)",
       "Bash(findstr *)",
-      "Bash(node *)"
+      "Bash(node *)",
+      "WebFetch(domain:acquasystems-lpi9.onrender.com)"
     ]
   }
 }
