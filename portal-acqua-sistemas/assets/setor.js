@@ -160,6 +160,34 @@ const APPS_DATA = [
         "setor": "ADMINISTRATIVO",
         "url": "https://canalloja.onrender.com/",
         "descricao": "Produtividade de loja"
+    },
+    {
+        "id": 34,
+        "nome": "Calendário Logístico",
+        "setor": "LOGISTICO",
+        "url": "https://calendario-logistica.onrender.com",
+        "descricao": "Agenda de organização dos dias do ADM logístico"
+    },
+    {
+        "id": 35,
+        "nome": "Almoxarifado",
+        "setor": "LOGISTICO",
+        "url": "https://almoxarifado-ys6c.onrender.com",
+        "descricao": "Controle de estoque do almoxarifado"
+    },
+    {
+        "id": 36,
+        "nome": "TransferItens",
+        "setor": "LOGISTICO",
+        "url": "https://transferitens.onrender.com",
+        "descricao": "Transferências de itens entre ER e estoque"
+    },
+    {
+        "id": 37,
+        "nome": "TransferItens",
+        "setor": "COMERCIAL",
+        "url": "https://transferitens.onrender.com",
+        "descricao": "Transferências de itens entre ER e estoque"
     }
 ];
 
